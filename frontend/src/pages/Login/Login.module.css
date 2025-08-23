@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@700&display=swap');
+
+.container {
+    display: flex;
+    max-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+}
+
+.formContainer {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.form {
+    max-width: 400px;
+    width: 100%;
+}
+
+.title {
+    font-family: 'Poltawski Nowy', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #000;
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.inputGroup {
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.input {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input::placeholder {
+    color: #D9D9D9;
+}
+
+.passwordHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgotPassword {
+    font-size: 0.75rem;
+    color: #6AAA64;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.passwordInputWrapper {
+    position: relative;
+}
+
+.togglePassword {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
+    padding: 0;
+}
+
+.rememberMe {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    accent-color: #6AAA64;
+}
+
+.rememberLabel {
+    font-size: 0.875rem;
+    color: #000;
+}
+
+.loginButton {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #6AAA64;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.dividerText {
+    padding: 0 1rem;
+    font-size: 0.875rem;
+    color: #888;
+}
+
+.googleButton {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: white;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.googleIcon {
+    font-size: 1.25rem;
+}
+
+.signUpText {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.signUpLink {
+    color: #6AAA64;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.imageContainer {
+    flex: 0 0 45%; /* Slightly reduced from 50% */
+    background-color: #f5f5f5;
+    overflow: hidden;
+    display: flex;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Form container adjustment */
+.formContainer {
+    flex: 0 0 55%; /* Slightly increased from 50% */
+    padding: 2rem 4rem; /* More horizontal padding */
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .formContainer,
+    .imageContainer {
+        flex: 1 1 100%;
+    }
+    
+    .imageContainer {
+        display: none;
+    }
+}

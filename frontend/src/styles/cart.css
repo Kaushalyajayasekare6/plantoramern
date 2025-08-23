@@ -1,0 +1,266 @@
+/* :root{
+  --green-100:#c9f0c9;
+  --green-500:#4da85a;
+  --border:#d9d9d9;
+  --text:#222;
+}
+
+*{ box-sizing:border-box }
+
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:#fff;
+}
+
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 16px 80px;
+}
+
+.cart-card{
+  background:#fafafa;
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.cart-table{ width:100%; border-collapse:collapse; }
+
+.cart-head th{
+  background:var(--green-100);
+  text-align:left;
+  font-weight:600;
+  padding:16px;
+  font-size:14px;
+}
+
+.cart-row td{
+  padding:18px 16px;
+  vertical-align:middle;
+  background:#f6f6f6;
+}
+
+.cart-row__remove{ width:40px; }
+
+.remove-btn{
+  background:transparent;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  line-height:1;
+  opacity:.7;
+}
+
+.cart-row__image img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:4px;
+}
+
+.cart-row__title{ min-width:180px; color:#444; }
+.cart-row__price, .cart-row__total { white-space:nowrap; }
+
+.qty{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:4px 8px;
+  gap:10px;
+  min-width:96px;
+  justify-content:space-between;
+  background:#fff;
+}
+
+.qty__btn{
+  width:28px;
+  height:28px;
+  border:none;
+  cursor:pointer;
+  background:#eee;
+  border-radius:4px;
+  font-size:18px;
+}
+
+.qty__value{ min-width:16px; text-align:center; }
+
+.divider td{
+  border-bottom:1px solid #bdbdbd;
+  padding:0;
+  height:1px;
+  background:#efefef;
+}
+
+.cart-actions{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:16px;
+  margin:24px 0 0;
+}
+
+.cart-grand-total{
+  font-size:16px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.checkout-btn{
+  border:none;
+  background:var(--green-500);
+  color:#fff;
+  padding:14px 24px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.cart-empty{ padding:24px; }
+
+
+
+ */
+
+
+
+
+
+
+:root{
+  --green-100:#c9f0c9;
+  --green-500:#4da85a;
+  --border:#d9d9d9;
+  --text:#222;
+}
+
+*{ box-sizing:border-box }
+
+body{
+  margin:0;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:var(--text);
+  background:#fff;
+}
+
+.container{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 16px 80px;
+}
+
+.cart-card{
+  background:#fafafa;
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+}
+
+.cart-table{ width:100%; border-collapse:collapse; }
+
+.cart-head th{
+  background:var(--green-100);
+  text-align:left;
+  font-weight:600;
+  padding:16px;
+  font-size:14px;
+}
+
+.cart-row td{
+  padding:18px 16px;
+  vertical-align:middle;
+  background:#f6f6f6;
+}
+
+.cart-row__remove{ width:40px; }
+
+.remove-btn{
+  background:transparent;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  line-height:1;
+  opacity:.7;
+}
+
+.cart-row__image img{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:4px;
+}
+
+.cart-row__title{ min-width:180px; color:#444; }
+.cart-row__price, .cart-row__total { white-space:nowrap; }
+
+.qty{
+  display:inline-flex;
+  align-items:center;
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:4px 8px;
+  gap:10px;
+  min-width:96px;
+  justify-content:space-between;
+  background:#fff;
+}
+
+.qty__btn{
+  width:28px;
+  height:28px;
+  border:none;
+  cursor:pointer;
+  background:#eee;
+  border-radius:4px;
+  font-size:18px;
+}
+
+.qty__value{ min-width:16px; text-align:center; }
+
+.divider td{
+  border-bottom:1px solid #bdbdbd;
+  padding:0;
+  height:1px;
+  background:#efefef;
+}
+
+.cart-actions{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:16px;
+  margin:24px 0 0;
+}
+
+.checkout-btn{
+  border:none;
+  background:var(--green-500);
+  color:#fff;
+  padding:14px 24px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.cart-empty{ padding:24px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
