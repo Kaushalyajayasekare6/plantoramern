@@ -1,58 +1,24 @@
-import express from "express";
-import Cart from "../models/Cart.js";
+import express from 'express';
+import { getCart, addToCart, updateCartItem, removeCartItem, clearCart } from '../controllers/cartController.js';
 
-const router = express.Router();
+const cartRouter = express.Router();
 
-const requireAuth = (req, res, next) => {
-  if (!req.user) return res.status(401).json({ message: "Unauthorized" });
-  next();
-};
+// All cart routes require authentication
+// The auth middleware should be applied in the main server file
 
-router.get("/", requireAuth, async (req, res) => {
-  try {
-    const cart = await Cart.findOne({ userId: req.user.id }).populate("items.productId");
-    res.json(cart || { items: [] });
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
+// Get user's cart
+cartRouter.get("/", getCart);
 
-router.post("/add", requireAuth, async (req, res) => {
-  try {
-    const { productId, quantity } = req.body;
-    let cart = await Cart.findOne({ userId: req.user.id });
-    if (!cart) cart = new Cart({ userId: req.user.id, items: [] });
+// Add item to cart
+cartRouter.post("/add", addToCart);
 
-    const idx = cart.items.findIndex(i => i.productId.toString() === productId);
-    if (idx >= 0) cart.items[idx].quantity += quantity;
-    else cart.items.push({ productId, quantity });
+// Update cart item quantity
+cartRouter.put("/update", updateCartItem);
 
-    await cart.save();
-    res.json(await cart.populate("items.productId"));
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
+// Remove specific item from cart
+cartRouter.delete("/remove/:productId", removeCartItem);
 
-router.put("/update", requireAuth, async (req, res) => {
-  try {
-    const { productId, quantity } = req.body;
-    const cart = await Cart.findOne({ userId: req.user.id });
-    if (!cart) return res.status(404).json({ message: "Cart not found" });
+// Clear entire cart
+cartRouter.delete("/clear", clearCart);
 
-    const item = cart.items.find(i => i.productId.toString() === productId);
-    if (item) item.quantity = quantity;
-
-    await cart.save();
-    res.json(await cart.populate("items.productId"));
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
-
-router.delete("/remove/:productId", requireAuth, async (req, res) => {
-  try {
-    const cart = await Cart.findOne({ userId: req.user.id });
-    if (!cart) return res.status(404).json({ message: "Cart not found" });
-
-    cart.items = cart.items.filter(i => i.productId.toString() !== req.params.productId);
-    await cart.save();
-    res.json(await cart.populate("items.productId"));
-  } catch (err) { res.status(500).json({ message: err.message }); }
-});
-
-export default router;
+export default cartRouter;
