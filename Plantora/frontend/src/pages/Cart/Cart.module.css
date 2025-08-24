@@ -16,23 +16,33 @@ body {
   background: #fff;
 }
 
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .container {
   max-width: 980px;
   margin: 0 auto;
-  padding: 32px 16px 80px;
+  padding: 24px 16px 80px;
 }
 
-/* Cart Table Styles */
+/* Cart Table Wrapper */
 .cart-card {
   background: #fafafa;
   border: 1px solid var(--border);
   border-radius: 6px;
-  overflow: hidden;
+  overflow-x: auto; /* enables horizontal scroll */
+  padding: 16px;
+  margin-bottom: 24px;
 }
 
+/* Table Styles */
 .cart-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 600px; /* ensures scroll on small screens */
 }
 
 .cart-head th {
@@ -44,7 +54,7 @@ body {
 }
 
 .cart-row td {
-  padding: 18px 16px;
+  padding: 16px;
   vertical-align: middle;
   background: #f6f6f6;
 }
@@ -70,7 +80,7 @@ body {
 }
 
 .cart-row__title {
-  min-width: 180px;
+  min-width: 120px;
   color: #444;
 }
 
@@ -118,18 +128,10 @@ body {
 /* Cart Actions */
 .cartActions {
   display: flex;
-  justify-content: flex-start; /* ✅ Align button to left */
+  justify-content: flex-start;
   align-items: center;
   gap: 16px;
   margin: 24px 0 0;
-}
-
-.cart-grand-total {
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
 }
 
 /* Checkout Button */
@@ -154,4 +156,65 @@ body {
   text-align: center;
   font-size: 16px;
   color: #555;
+}
+
+/* Loading */
+.loading {
+  padding: 50px;
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Responsive Breakpoints */
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 1024px) {
+  .container {
+    padding: 20px 16px 60px;
+  }
+
+  .cart-row__title {
+    min-width: 100px;
+  }
+}
+
+/* Mobile: <768px */
+@media (max-width: 768px) {
+  .cart-table {
+    min-width: unset; /* allow table to shrink */
+  }
+
+  /* Hide less-important columns for mobile */
+  .cart-head th:nth-child(2),
+  .cart-row td:nth-child(2),
+  .cart-head th:nth-child(4),
+  .cart-row td:nth-child(4) {
+    display: none;
+  }
+
+  .qty {
+    min-width: 80px;
+  }
+
+  .checkoutBtn {
+    width: 100%; /* full width on mobile */
+    padding: 12px 0;
+  }
+}
+
+/* Extra small screens: <480px */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px 8px 40px;
+  }
+
+  .cart-row td {
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  .cart-head th {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
 }

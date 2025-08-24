@@ -5,18 +5,18 @@ import styles from './Navbar.module.css';
 const Navbar = () => {
   return (
     <nav className={styles.navbar}>
-      <div className={styles['navbar-container']}>
+      <div className={styles.navbarContainer}>
         {/* Logo */}
-        <div className={styles['navbar-logo']}>
+        <div className={styles.navbarLogo}>
           <h1>plantora</h1>
         </div>
 
         {/* Navigation Links */}
-        <div className={styles['navbar-links']}>
+        <div className={styles.navbarLinks}>
           <NavLink
             to="/home"
             className={({ isActive }) =>
-              isActive ? `${styles['nav-link']} ${styles.active}` : styles['nav-link']
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
             Home
@@ -24,7 +24,7 @@ const Navbar = () => {
           <NavLink
             to="/products"
             className={({ isActive }) =>
-              isActive ? `${styles['nav-link']} ${styles.active}` : styles['nav-link']
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
             Products
@@ -32,7 +32,7 @@ const Navbar = () => {
           <NavLink
             to="/contactUs"
             className={({ isActive }) =>
-              isActive ? `${styles['nav-link']} ${styles.active}` : styles['nav-link']
+              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
             }
           >
             Contact
@@ -40,11 +40,11 @@ const Navbar = () => {
         </div>
 
         {/* Right Side Icons */}
-        <div className={styles['navbar-icons']}>
-          <NavLink to="/cart" className={styles['nav-icon']}>
+        <div className={styles.navbarIcons}>
+          <NavLink to="/cart" className={styles.navIcon}>
             <i className="fas fa-shopping-cart"></i>
           </NavLink>
-          <NavLink to="/login" className={styles['nav-icon']}>
+          <NavLink to="/login" className={styles.navIcon}>
             <i className="fas fa-user"></i>
           </NavLink>
         </div>

@@ -238,7 +238,7 @@ export default function ProductAdd(){
 						required
 					>
 						<option value=''>Select a category</option>
-						<option value='artificial-plants'>Artificial Plants</option>
+						<option value='artificial'>Artificial Plants</option>
 						<option value='real-plants'>Real Plants</option>
 						<option value='pots'>Pots</option>
 						<option value='accessories'>Accessories</option>

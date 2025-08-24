@@ -1,23 +1,22 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Poltawski+Nowy:wght@700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+/* Import Fonts & Icons */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Poltawski+Nowy:wght@700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 
 .footer {
   background-color: #87c881;
-  padding: 60px 0 30px 0;
-  font-family: 'Poppins', sans-serif;
-  width: 100vw;
+  padding: 3rem 1.5rem 1.5rem;
+  font-family: "Poppins", sans-serif;
+  width: 100%;
   box-sizing: border-box;
 }
 
 .footerContainer {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 40px;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 2.5rem;
 }
 
 /* Left Section */
@@ -27,28 +26,28 @@
 }
 
 .footerLogo {
-  font-family: 'Poltawski Nowy', serif;
-  font-size: 28px;
+  font-family: "Poltawski Nowy", serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   color: #000;
 }
 
 .footerTagline {
-  font-size: 16px;
+  font-size: 1rem;
   color: #000;
-  margin-bottom: 25px;
+  margin-bottom: 1.5rem;
   line-height: 1.5;
 }
 
 .socialLinks {
   display: flex;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .socialLink {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background-color: #fff;
   display: flex;
@@ -56,19 +55,19 @@
   justify-content: center;
   text-decoration: none;
   color: #000;
-  font-size: 16px;
+  font-size: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .socialLink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
 }
 
 /* Right Section */
 .footerRight {
   display: flex;
-  gap: 60px;
+  gap: 3rem;
   flex: 2;
   justify-content: flex-end;
   flex-wrap: wrap;
@@ -77,75 +76,87 @@
 .footerColumn {
   display: flex;
   flex-direction: column;
-  min-width: 120px;
+  min-width: 140px;
 }
 
 .columnHeading {
-  font-family: 'Poltawski Nowy', serif;
-  font-size: 18px;
+  font-family: "Poltawski Nowy", serif;
+  font-size: 1.125rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
   color: #000;
 }
 
 .footerLink {
   color: #000;
   text-decoration: none;
-  margin-bottom: 12px;
-  font-size: 15px;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
   transition: color 0.3s ease;
 }
 
 .footerLink:hover {
-  color: #1B5E20;
+  color: #1b5e20;
 }
 
-/* Copyright Section */
+/* Copyright */
 .footerCopyright {
   border-top: 1px solid rgba(46, 125, 50, 0.3);
-  margin: 40px 40px 0 40px;
-  padding-top: 20px;
-  font-size: 14px;
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  font-size: 0.9rem;
   color: #000;
   text-align: center;
-  max-width: 1200px;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .footerContainer {
-    padding: 0 20px;
-    flex-direction: column;
-    gap: 30px;
-  }
-  
+/* 🔹 Responsive Breakpoints */
+
+/* Tablets */
+@media (max-width: 1024px) {
   .footerRight {
+    gap: 2rem;
     justify-content: flex-start;
-    gap: 40px;
   }
 }
 
+/* Large Mobiles / Small Tablets */
+@media (max-width: 768px) {
+  .footerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footerRight {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+}
+
+/* Small Mobiles */
 @media (max-width: 480px) {
   .footerRight {
     flex-direction: column;
-    gap: 25px;
+    gap: 1.5rem;
   }
-  
+
   .socialLinks {
     justify-content: flex-start;
   }
-  
+
   .footerLogo {
-    font-size: 22px;
+    font-size: 1.4rem;
   }
-  
+
   .columnHeading {
-    font-size: 16px;
+    font-size: 1rem;
   }
-  
+
   .footerLink {
-    font-size: 14px;
+    font-size: 0.875rem;
   }
 }

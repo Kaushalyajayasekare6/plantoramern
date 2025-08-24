@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Footer.module.css';
+import React from "react";
+import styles from "./Footer.module.css";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -11,25 +11,42 @@ const Footer = () => {
         <div className={styles.footerLeft}>
           <h2 className={styles.footerLogo}>PLANTORA</h2>
           <p className={styles.footerTagline}>
-            We help you find<br />
+            We help you find <br />
             your dream plant
           </p>
-          <div className={styles.socialLinks}>
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+          <nav className={styles.socialLinks} aria-label="Social media links">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className={styles.socialLink}
+            >
               <i className="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={styles.socialLink}
+            >
               <i className="fab fa-instagram"></i>
             </a>
-            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+              className={styles.socialLink}
+            >
               <i className="fab fa-twitter"></i>
             </a>
-          </div>
+          </nav>
         </div>
 
         {/* Right Section */}
         <div className={styles.footerRight}>
-          {/* Information Column */}
           <div className={styles.footerColumn}>
             <h3 className={styles.columnHeading}>Information</h3>
             <a href="/about" className={styles.footerLink}>About</a>
@@ -37,7 +54,6 @@ const Footer = () => {
             <a href="/blog" className={styles.footerLink}>Blog</a>
           </div>
 
-          {/* Company Column */}
           <div className={styles.footerColumn}>
             <h3 className={styles.columnHeading}>Company</h3>
             <a href="/community" className={styles.footerLink}>Community</a>
@@ -45,7 +61,6 @@ const Footer = () => {
             <a href="/story" className={styles.footerLink}>Our Story</a>
           </div>
 
-          {/* Contact Column */}
           <div className={styles.footerColumn}>
             <h3 className={styles.columnHeading}>Contact</h3>
             <a href="/getting-started" className={styles.footerLink}>Getting Started</a>
@@ -54,8 +69,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
-      {/* Copyright Section */}
+
+      {/* Copyright */}
       <div className={styles.footerCopyright}>
         &copy; {currentYear} PLANTORA. All Rights Reserved. Terms of Use.
       </div>

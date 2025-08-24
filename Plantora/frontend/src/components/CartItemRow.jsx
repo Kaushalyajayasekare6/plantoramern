@@ -2,7 +2,7 @@ import { formatLKR } from "../utils/money";
 import QtyInput from "./QtyInput";
 import { useCart } from "../context/CartContext";
 import { useState } from "react";
-import plantImage from "../assets/plants/plant1.jpg"; // Import a default image
+import plantImage from "../assets/plants/plant1.jpg";
 
 export default function CartItemRow({ item }) {
   const { increment, decrement, remove } = useCart();
@@ -13,7 +13,7 @@ export default function CartItemRow({ item }) {
     try {
       await increment(item.id);
     } catch (error) {
-      console.error('Error incrementing item:', error);
+      console.error("Error incrementing item:", error);
     } finally {
       setProcessing(false);
     }
@@ -24,7 +24,7 @@ export default function CartItemRow({ item }) {
     try {
       await decrement(item.id);
     } catch (error) {
-      console.error('Error decrementing item:', error);
+      console.error("Error decrementing item:", error);
     } finally {
       setProcessing(false);
     }
@@ -35,22 +35,21 @@ export default function CartItemRow({ item }) {
     try {
       await remove(item.id);
     } catch (error) {
-      console.error('Error removing item:', error);
+      console.error("Error removing item:", error);
     } finally {
       setProcessing(false);
     }
   };
 
-  // Handle image loading errors
+  // Handle image fallback
   const handleImageError = (e) => {
-    e.target.src = plantImage; // Use the imported default image
+    e.target.src = plantImage;
   };
 
-  // Fix image URL formatting
   const getImageUrl = (img) => {
     if (!img) return plantImage;
-    if (img.startsWith('http')) return img;
-    if (img.startsWith('/uploads/')) return `http://localhost:5000${img}`;
+    if (img.startsWith("http")) return img;
+    if (img.startsWith("/uploads/")) return `http://localhost:5000${img}`;
     return img;
   };
 
@@ -64,20 +63,21 @@ export default function CartItemRow({ item }) {
           onClick={handleRemove}
           disabled={processing}
         >
-          {processing ? '...' : '×'}
+          {processing ? "..." : "×"}
         </button>
       </td>
 
       <td className="cart-row__image">
-        <img 
-          src={getImageUrl(item.img)} 
-          alt={item.title} 
+        <img
+          src={getImageUrl(item.img)}
+          alt={item.title}
           onError={handleImageError}
-          style={{ width: '80px', height: '80px', objectFit: 'cover' }}
+          style={{ width: "80px", height: "80px", objectFit: "cover" }}
         />
       </td>
 
       <td className="cart-row__title">{item.title}</td>
+
       <td className="cart-row__price">{formatLKR(item.price)}</td>
 
       <td className="cart-row__qty">

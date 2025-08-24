@@ -1,467 +1,359 @@
-/* Admin Panel Layout */
+/* ======= Admin Layout ======= */
 .admin {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    font-family: 'Times New Roman', serif;
-  }
-  
-  /* Sidebar Styles */
+  display: flex;
+  min-height: 100vh;
+  font-family: 'Times New Roman', serif;
+  transition: all 0.3s;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #90EE90;
+  padding: 2rem 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.admin-title {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #006400;
+}
+
+/* Sidebar toggle button */
+.toggle-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  align-self: flex-end;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  background-color: #fff;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+/* ===== Dashboard / Forms / Tables ===== */
+.dashboard-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Table Styles */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.product-table th, .product-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.product-table th {
+  background-color: #90EE90;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+.product-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* Status Badge */
+.status-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.available {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.unavailable {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Action Buttons */
+.action-btn {
+  padding: 6px 10px;
+  margin: 0 2px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.update-btn {
+  background-color: #3498db;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #2980b9;
+  box-shadow: 0 4px 6px rgba(52,152,219,0.3);
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+  box-shadow: 0 4px 6px rgba(231,76,60,0.3);
+}
+
+/* Forms */
+.add-product-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #90EE90;
+  box-shadow: 0 0 0 2px rgba(144,238,144,0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.add-product-btn, .cancel-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.add-product-btn {
+  background-color: #90EE90;
+}
+
+.add-product-btn:hover {
+  background-color: #7FDD7F;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Image Preview */
+.image-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.image-preview-item {
+  position: relative;
+}
+
+.image-preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #e74c3c;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+/* Error & Loading */
+.error-message, .error {
+  background-color: #fee;
+  color: #c33;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  padding: 2rem 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
   .sidebar {
-    width: 300px;
-    background-color: #90EE90;
-    padding: 2rem 1.5rem;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .admin-title {
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: #333;
-    font-family: 'Times New Roman', serif;
-  }
-  
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .nav-link {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-    padding: 0.5rem 0;
-    transition: color 0.3s ease;
-    font-family: 'Times New Roman', serif;
-  }
-  
-  .nav-link:hover {
-    color: #006400;
-  }
-  
-  .nav-link.active {
-    color: #006400;
-  }
-  
-  /* Main Content Area */
-  .main-content {
-    flex: 1;
-    background-color: white;
-    padding: 2rem;
-  }
-  
-  /* Dashboard Styles */
-  .dashboard-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-    color: #333;
-    font-family: 'Times New Roman', serif;
-    text-align: center;
-  }
-  
-  /* Table Styles */
-  .product-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-  }
-  
-  .product-table th {
-    background-color: #90EE90;
-    padding: 1rem;
-    text-align: left;
-    font-weight: bold;
-    color: #333;
-    font-family: Arial, sans-serif;
-  }
-  
-  .product-table td {
+    width: 200px;
     padding: 1.5rem 1rem;
-    border-bottom: 1px solid #f0f0f0;
-    font-family: Arial, sans-serif;
   }
-  
-  .product-table tr:hover {
-    background-color: #f9f9f9;
+  .dashboard-title {
+    font-size: 1.8rem;
   }
-  
-  .product-image {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .admin {
+    flex-direction: column;
   }
-  
-  .product-title {
-    font-weight: 500;
-  }
-  
-  .price {
-    color: #006400;
-    font-weight: bold;
-  }
-  
-  .quantity {
-    font-weight: 500;
-  }
-  
-  .actions {
-    color: #666;
-  }
-  
-  /* Add Product Form Styles */
-  .add-product-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-    color: #333;
-    font-family: 'Times New Roman', serif;
-    font-size: 1rem;
-  }
-  
-  .form-input,
-  .form-textarea,
-  .form-select {
+  .sidebar {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    transition: border-color 0.3s ease;
-  }
-  
-  .form-input:focus,
-  .form-textarea:focus,
-  .form-select:focus {
-    outline: none;
-    border-color: #90EE90;
-    box-shadow: 0 0 0 2px rgba(144, 238, 144, 0.2);
-  }
-  
-  .form-textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  /* File Input Styles */
-  .file-input-container {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding: 1rem;
+  }
+  .nav-links {
+    flex-direction: row;
     gap: 1rem;
   }
-  
-  .file-input {
-    flex: 1;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    background-color: white;
+  .main-content {
+    padding: 1rem;
   }
-  
-  .choose-file-btn {
-    padding: 0.75rem 1.5rem;
-    background-color: #666;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .choose-file-btn:hover {
-    background-color: #555;
-  }
-  
-  .file-selected {
-    margin-top: 0.5rem;
+  .product-table th,
+  .product-table td {
+    padding: 0.5rem;
     font-size: 0.9rem;
-    color: #666;
-    font-style: italic;
   }
-  
-  /* Form Actions */
-  .form-actions {
-    text-align: right;
-    margin-top: 2rem;
-    
-  }
-  
-  .add-product-btn {
-    padding: 1rem 2rem;
-    background-color: #90EE90;
-    color: #333;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Times New Roman', serif;
-    
-  }
-  .add-product-btn1 {
-    padding: 1rem 2rem;
-    background-color: #dd5858;
-    color: #333;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-family: 'Times New Roman', serif;
-    
-  }
-  
-  .add-product-btn:hover {
-    background-color: #7FDD7F;
-  }
-  
-  .add-product-btn:active {
-    transform: translateY(1px);
-  }
-  
-  /* Update Product Form action btn Styles */
-  .action-btn {
-    padding: 8px 12px;
-    margin: 0 4px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
+  .product-image {
+    width: 40px;
     height: 40px;
   }
-  
-  .update-btn {
-    background-color: #3498db;
-    color: white;
-  }
-  
-  .update-btn:hover {
-    background-color: #2980b9;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
-  }
-  
-  .delete-btn {
-    background-color: #e74c3c;
-    color: white;
-  }
-  
-  .delete-btn:hover {
-    background-color: #c0392b;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
-  }
-  
-  .action-btn:active {
-    transform: translateY(0);
-  }
-  
-  .actions {
-    text-align: center;
-    padding: 10px;
-  }
-  /* ... existing code ... */
-  
-  /* Admin Panel Styles */
-  .loading {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.1rem;
-    color: #666;
-  }
-  
-  .error {
-    background-color: #fee;
-    color: #c33;
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-    border: 1px solid #fcc;
-  }
-  
-  .error-message {
-    background-color: #fee;
-    color: #c33;
-    padding: 1rem;
-    border-radius: 6px;
-    margin: 1rem 0;
-    border: 1px solid #fcc;
-  }
-  
-  .retry-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 1rem;
-  }
-  
-  .retry-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .no-products, .no-users {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    font-style: italic;
-  }
-  
-  .status-badge {
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
-  }
-  
-  .status-badge.available {
-    background-color: #d4edda;
-    color: #155724;
-  }
-  
-  .status-badge.unavailable {
-    background-color: #f8d7da;
-    color: #721c24;
-  }
-  
-  .role-select {
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: white;
-  }
-  
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .form-checkbox {
-    width: auto;
-    margin: 0;
-  }
-
-  /* Image upload styles */
-  .form-help {
-    display: block;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: #666;
-    font-style: italic;
-  }
-
-  .image-preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-
-  .image-preview-item {
-    position: relative;
-    display: inline-block;
-  }
-
-  .image-preview {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .remove-image-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    width: 24px;
-    height: 24px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .remove-image-btn:hover {
-    background-color: #c0392b;
-    transform: scale(1.1);
-  }
-  
-  .cancel-btn {
-    background-color: #6c757d;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 1rem;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #5a6268;
-  }
-  
   .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    align-items: stretch;
   }
-  
-  /* Responsive table */
-  @media (max-width: 768px) {
-    .product-table {
-      font-size: 0.9rem;
-    }
-    
-    .product-table th,
-    .product-table td {
-      padding: 0.5rem 0.25rem;
-    }
-    
-    .product-image {
-      width: 40px;
-      height: 40px;
-    }
+  .add-product-form {
+    padding: 1rem;
   }
+  .image-preview {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .add-product-form {
+    padding: 0.5rem;
+  }
+}
