@@ -1,27 +1,34 @@
 import User from '../models/user.js';
 import Review from '../models/Review.js';
 import Product from '../models/product.js';
+
 // Get reviews for a product
 export const getProductReviews = async (req, res) => {
   try {
     const { productId } = req.params;
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
-    const skip = (page - 1) * limit;
-
+    
     const reviews = await Review.find({ productId })
       .populate('userId', 'firstName lastName')
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit);
+      .sort({ createdAt: -1 });
 
-    const totalReviews = await Review.countDocuments({ productId });
+    // Check if user has liked each review
+    if (req.user && req.user.id) {
+      const userId = req.user.id;
+      const reviewsWithLikes = reviews.map(review => {
+        const reviewObj = review.toObject();
+        reviewObj.isLiked = reviewObj.likes.includes(userId);
+        return reviewObj;
+      });
+      
+      return res.json({
+        reviews: reviewsWithLikes,
+        totalReviews: reviewsWithLikes.length
+      });
+    }
 
     res.json({
       reviews,
-      currentPage: page,
-      totalPages: Math.ceil(totalReviews / limit),
-      totalReviews
+      totalReviews: reviews.length
     });
   } catch (error) {
     console.error('Error fetching reviews:', error);
@@ -33,6 +40,11 @@ export const getProductReviews = async (req, res) => {
 export const createReview = async (req, res) => {
   try {
     const { productId, rating, comment } = req.body;
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+    
     const userId = req.user.id;
 
     // Check if user already reviewed this product
@@ -60,13 +72,9 @@ export const createReview = async (req, res) => {
     // Update product average rating
     await updateProductRating(productId);
 
-    // Populate the review with user info before sending response
-    const populatedReview = await Review.findById(review._id)
-      .populate('userId', 'firstName lastName');
-
     res.status(201).json({
       message: 'Review created successfully',
-      review: populatedReview
+      review
     });
   } catch (error) {
     console.error('Error creating review:', error);
@@ -79,6 +87,11 @@ export const updateReview = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const { rating, comment } = req.body;
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+    
     const userId = req.user.id;
 
     const review = await Review.findOne({ _id: reviewId, userId });
@@ -93,12 +106,9 @@ export const updateReview = async (req, res) => {
     // Update product average rating
     await updateProductRating(review.productId);
 
-    const populatedReview = await Review.findById(review._id)
-      .populate('userId', 'firstName lastName');
-
     res.json({
       message: 'Review updated successfully',
-      review: populatedReview
+      review
     });
   } catch (error) {
     console.error('Error updating review:', error);
@@ -110,6 +120,11 @@ export const updateReview = async (req, res) => {
 export const deleteReview = async (req, res) => {
   try {
     const { reviewId } = req.params;
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+    
     const userId = req.user.id;
 
     const review = await Review.findOne({ _id: reviewId, userId });
@@ -134,6 +149,11 @@ export const deleteReview = async (req, res) => {
 export const toggleLikeReview = async (req, res) => {
   try {
     const { reviewId } = req.params;
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+    
     const userId = req.user.id;
 
     const review = await Review.findById(reviewId);
@@ -153,7 +173,7 @@ export const toggleLikeReview = async (req, res) => {
 
     res.json({
       message: isLiked ? 'Review unliked' : 'Review liked',
-      likes: review.likes.length,
+      likes: review.likes,
       isLiked: !isLiked
     });
   } catch (error) {
@@ -167,6 +187,11 @@ export const addReply = async (req, res) => {
   try {
     const { reviewId } = req.params;
     const { comment } = req.body;
+    
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Authentication required' });
+    }
+    
     const userId = req.user.id;
 
     const user = await User.findById(userId);
@@ -206,8 +231,8 @@ const updateProductRating = async (productId) => {
     const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
     const averageRating = reviews.length > 0 ? totalRating / reviews.length : 0;
 
-    await Product.findByIdAndUpdate(
-      productId,
+    await Product.findOneAndUpdate(
+      { productId: productId },
       { 
         rating: Math.round(averageRating * 2) / 2, // Round to nearest 0.5
         reviewCount: reviews.length 

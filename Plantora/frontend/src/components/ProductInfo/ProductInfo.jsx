@@ -132,7 +132,14 @@ const ProductInfo = () => {
     }
     
     const imageUrl = productData.images[0];
-    return imageUrl || plantImage;
+    // Ensure the URL is properly formatted
+    if (imageUrl.startsWith('http')) {
+      return imageUrl;
+    } else if (imageUrl.startsWith('/uploads/')) {
+      return `http://localhost:5000${imageUrl}`;
+    } else {
+      return plantImage;
+    }
   };
 
   // Render star rating

@@ -11,10 +11,10 @@ import { auth } from '../middleware/auth.js';
 
 const reviewRouter = express.Router();
 
-// Public route
+// Public route - get reviews for a product
 reviewRouter.get('/product/:productId', getProductReviews);
 
-// Protected routes
+// Protected routes - require authentication
 reviewRouter.post('/', auth, createReview);
 reviewRouter.put('/:reviewId', auth, updateReview);
 reviewRouter.delete('/:reviewId', auth, deleteReview);

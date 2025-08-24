@@ -2,18 +2,16 @@ const API_BASE_URL = 'http://localhost:5000/api';
 
 export const reviewAPI = {
   // Get reviews for a product
-  getProductReviews: async (productId, page = 1, limit = 10) => {
+  getReviews: async (productId) => {
     try {
-      const response = await fetch(
-        `${API_BASE_URL}/reviews/product/${productId}?page=${page}&limit=${limit}`
-      );
+      const response = await fetch(`${API_BASE_URL}/reviews/product/${productId}`);
       
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({ message: 'Failed to fetch reviews' }));
         throw new Error(errorData.message || 'Failed to fetch reviews');
       }
       
-      return response.json();
+      return await response.json();
     } catch (error) {
       console.error('Error fetching reviews:', error);
       throw error;
@@ -86,7 +84,7 @@ export const reviewAPI = {
         throw new Error(errorData.message || 'Failed to delete review');
       }
       
-      return response.json();
+      return await response.json();
     } catch (error) {
       console.error('Error deleting review:', error);
       throw error;
@@ -117,7 +115,7 @@ export const reviewAPI = {
   },
 
   // Add reply to review
-  addReply: async (reviewId, comment) => {
+  addReply: async (reviewId, replyData) => {
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(`${API_BASE_URL}/reviews/${reviewId}/reply`, {
@@ -126,7 +124,7 @@ export const reviewAPI = {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({ comment })
+        body: JSON.stringify(replyData)
       });
       
       const data = await response.json();
